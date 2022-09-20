@@ -20,6 +20,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             "password": {"write_only": True}
         }
 
+    def create(self, validated_data: dict):
+        """
+            Overriding Create Method
+        """
+        return User.objects.create_user(**validated_data)
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """

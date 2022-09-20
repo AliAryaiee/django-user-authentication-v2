@@ -23,8 +23,9 @@ class UserRegister(APIView):
 
         if serialized_user.is_valid(raise_exception=True):
             validated_data = serialized_user.validated_data
-            User.objects.create_user(**validated_data)
-            return Response(serialized_user.data)
+            user_db = serialized_user.create(validated_data)
+            serialized_response = serializers.UserProfileSerializer(user_db)
+            return Response(serialized_response.data)
 
 
 class UserProfile(APIView):
