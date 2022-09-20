@@ -27,7 +27,7 @@ class UserRegister(APIView):
             return Response(serialized_user.data)
 
 
-class GetUserProfile(APIView):
+class UserProfile(APIView):
     """
         User Profile Endpoint
     """
